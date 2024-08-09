@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     // Handle all update logic associated with the character's movement.
     private void UpdateMovement()
     {
+        animator.SetFloat("Speed", agentNavigation.velocity.magnitude);
         if (Input.GetMouseButton(0))
             agentNavigation.SetDestination(Utilities.GetMouseWorldPosition());
     }
