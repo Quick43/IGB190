@@ -134,7 +134,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         health -= amount;
         if (health <= 0)
-         Kill();
+            Kill();
     }
 
     // Destroy the player, but briefly keeping the corpse visible to play the death animation
