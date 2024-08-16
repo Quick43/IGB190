@@ -33,6 +33,7 @@ public class Monster : MonoBehaviour, IDamageable
     private enum Ability { Slash, /* Add more abilities here */ }
     private Ability? abilityBeingCast = null;
     private float finishAbilityCastAt;
+    [Range(0.0f, 1.0f)] public float slashActivationPoint = 0.4f;
 
 
     // Start is called before the first frame update
@@ -97,7 +98,7 @@ public class Monster : MonoBehaviour, IDamageable
         // Calculate when the ability will finish casting, and when the player can next cast and move
         float castTime = (1.0f / attacksPerSecond);
         canCastAt = Time.time + castTime;
-        finishAbilityCastAt = Time.time + 0.4f * castTime;
+        finishAbilityCastAt = Time.time + slashActivationPoint * castTime;
         canMoveAt = finishAbilityCastAt + MOVEMENT_DELAY_AFTER_CASTING;
     }
 

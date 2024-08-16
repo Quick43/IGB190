@@ -16,7 +16,7 @@ public class UnitUI : MonoBehaviour
     private void Awake()
     {
         trackedDamageable = GetComponentInParent<IDamageable>();
-        trackedTransform = trackedTransform.parent;
+        trackedTransform = transform.parent;
     }
 
     // Update the position and display of the UI every frame

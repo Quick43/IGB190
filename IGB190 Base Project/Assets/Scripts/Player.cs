@@ -35,6 +35,7 @@ public class Player : MonoBehaviour, IDamageable
     private Ability? abilityBeingCast = null;
     private float finishAbilityCastAt;
     private Vector3 abilityTargetLocation;
+    [Range(0.0f, 1.0f)] public float cleaveActivationPoint = 0.4f;
 
 
     // Start is called before the first frame update
@@ -104,7 +105,7 @@ public class Player : MonoBehaviour, IDamageable
         // Calculate when the ability will finish casting, and when the player can nextcast and move
         float castTime = (1.0f / attacksPerSecond);
         canCastAt = Time.time + castTime;
-        finishAbilityCastAt = Time.time + 0.4f * castTime;
+        finishAbilityCastAt = Time.time + cleaveActivationPoint * castTime;
         canMoveAt = finishAbilityCastAt + MOVEMENT_DELAY_AFTER_CASTING;
         abilityTargetLocation = Utilities.GetMouseWorldPosition();
     }
