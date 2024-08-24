@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IDamageable
 {
@@ -13,8 +16,9 @@ public class Player : MonoBehaviour, IDamageable
     public float attacksPerSecond = 1.0f;
     public float attackRange = 2.0f;
     public float attackDamage = 40.0f;
-    [HideInInspector] public bool isDead;
+    public float experience = 0.0f;
 
+    [HideInInspector] public bool isDead;
     // Visual Effects
     public GameObject slashEffect;
 
@@ -29,6 +33,7 @@ public class Player : MonoBehaviour, IDamageable
     // Cache refrences to important components for easy access later.
     private NavMeshAgent agentNavigation;
     private Animator animator;
+    private UnitUI unitUI;
 
     // Variables to control ability casting
     private enum Ability { Cleave, /* Add Abilities Here */ }
@@ -51,8 +56,18 @@ public class Player : MonoBehaviour, IDamageable
         if (isDead) return;
         UpdateMovement();
         UpdateAbilityCasting();
+        LevelUp();
     }
 
+    private void LevelUp()
+    {
+        if (experience >= 100)
+        {
+            attackDamage += 10;
+            experience = 0.0f;
+            unitUI.LevelUpUI();
+        }
+    }
     // Handle all update logic associated with the character's movement.
     private void UpdateMovement()
     {

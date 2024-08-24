@@ -132,6 +132,7 @@ public class Monster : MonoBehaviour, IDamageable
             animator.transform.SetParent(null);
             Destroy(animator.gameObject, TIME_BEFORE_CORPSE_DESTROYED);
         }
+        player.experience = player.experience + 10;
         Destroy(gameObject);
     }
 

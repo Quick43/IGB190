@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ public class UnitUI : MonoBehaviour
     public Vector3 offset = new Vector3(0, 2, 0);
     private IDamageable trackedDamageable;
     private Transform trackedTransform;
+    public TextMeshProUGUI levelUpText;
 
     // Cache initial references to the unit and damageable interface
     private void Awake()
@@ -28,5 +30,12 @@ public class UnitUI : MonoBehaviour
 
         // Update the amount of the red health bar which is visible
         healthBar.fillAmount = trackedDamageable.GetCurrentHealthPercent();
+    }
+
+    public IEnumerator LevelUpUI()
+    {
+        Instantiate(levelUpText);
+        yield return new WaitForSeconds(4);
+        Destroy(levelUpText);
     }
 }
