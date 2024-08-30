@@ -65,7 +65,6 @@ public class Player : MonoBehaviour, IDamageable
         {
             attackDamage += 10;
             experience = 0.0f;
-            unitUI.LevelUpUI();
         }
     }
     // Handle all update logic associated with the character's movement.

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    public float timeBetweenSpawns = 2.0f;
-    public float spawnRadius = 10.0f;
+    public float timeBetweenSpawns = 5.0f;
+    public float spawnRadius = 5.0f;
     public Monster monsterToSpawn;
     public GameObject monsterSpawnEffect;
     private float nextSpawnAt;
