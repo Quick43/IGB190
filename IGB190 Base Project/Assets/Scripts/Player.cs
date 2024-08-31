@@ -18,10 +18,14 @@ public class Player : MonoBehaviour, IDamageable
     public float attackDamage = 40.0f;
     public float experience = 0.0f;
     public float levelRequirement = 100.0f;
+    private int level = 1;
+
 
     [HideInInspector] public bool isDead;
     // Visual Effects
     public GameObject slashEffect;
+
+    public TextMeshProUGUI levelDisplay;
 
     public float experiencePercent = 0.0f;
 
@@ -70,6 +74,8 @@ public class Player : MonoBehaviour, IDamageable
             attackDamage += 10;
             levelRequirement = levelRequirement * 1.2f;
             experience = 0.0f;
+            level += 1;
+            levelDisplay.text = "Level " + level.ToString();
         }
     }
     // Handle all update logic associated with the character's movement.

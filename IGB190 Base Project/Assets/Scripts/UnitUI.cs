@@ -32,7 +32,10 @@ public class UnitUI : MonoBehaviour
 
         // Update the amount of the red health bar which is visible
         healthBar.fillAmount = trackedDamageable.GetCurrentHealthPercent();
-        float experiencePercentage = GameObject.Find("Player").GetComponent<Player>().experiencePercent;
-        experienceBar.fillAmount = experiencePercentage;
+        if (experienceBar != null)
+        {
+            float experiencePercentage = GameObject.Find("Player").GetComponent<Player>().experiencePercent;
+            experienceBar.fillAmount = experiencePercentage;
+        }
     }
 }
