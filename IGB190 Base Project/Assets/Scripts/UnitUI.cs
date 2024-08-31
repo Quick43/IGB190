@@ -12,13 +12,15 @@ public class UnitUI : MonoBehaviour
     public Vector3 offset = new Vector3(0, 2, 0);
     private IDamageable trackedDamageable;
     private Transform trackedTransform;
+    public Image experienceBar;
+    
 
    
     // Cache initial references to the unit and damageable interface
     private void Awake()
     {
         trackedDamageable = GetComponentInParent<IDamageable>();
-        trackedTransform = transform.parent;
+        trackedTransform = transform.parent;  
     }
 
     // Update the position and display of the UI every frame
@@ -30,5 +32,7 @@ public class UnitUI : MonoBehaviour
 
         // Update the amount of the red health bar which is visible
         healthBar.fillAmount = trackedDamageable.GetCurrentHealthPercent();
+        float experiencePercentage = GameObject.Find("Player").GetComponent<Player>().experiencePercent;
+        experienceBar.fillAmount = experiencePercentage;
     }
 }

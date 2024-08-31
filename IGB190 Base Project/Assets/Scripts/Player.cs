@@ -17,10 +17,13 @@ public class Player : MonoBehaviour, IDamageable
     public float attackRange = 2.0f;
     public float attackDamage = 40.0f;
     public float experience = 0.0f;
+    public float levelRequirement = 100.0f;
 
     [HideInInspector] public bool isDead;
     // Visual Effects
     public GameObject slashEffect;
+
+    public float experiencePercent = 0.0f;
 
     // Variables to control when the unit can attack and move
     private float canCastAt;
@@ -54,6 +57,7 @@ public class Player : MonoBehaviour, IDamageable
     private void Update()
     {
         if (isDead) return;
+        experiencePercent = experience / levelRequirement;
         UpdateMovement();
         UpdateAbilityCasting();
         LevelUp();
@@ -61,9 +65,10 @@ public class Player : MonoBehaviour, IDamageable
 
     private void LevelUp()
     {
-        if (experience >= 100)
+        if (experience > levelRequirement)
         {
             attackDamage += 10;
+            levelRequirement = levelRequirement * 1.2f;
             experience = 0.0f;
         }
     }
