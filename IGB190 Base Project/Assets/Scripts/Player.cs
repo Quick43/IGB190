@@ -26,6 +26,8 @@ public class Player : MonoBehaviour, IDamageable
     public GameObject slashEffect;
 
     public TextMeshProUGUI levelDisplay;
+    public Canvas gameUI;
+    public Canvas levelUI;
 
     public float experiencePercent = 0.0f;
 
@@ -40,7 +42,8 @@ public class Player : MonoBehaviour, IDamageable
     // Cache refrences to important components for easy access later.
     private NavMeshAgent agentNavigation;
     private Animator animator;
-    private UnitUI unitUI;
+    public MonsterSpawner monsterSpawnerLeft;
+    public MonsterSpawner monsterSpawnerRight;
 
     // Variables to control ability casting
     private enum Ability { Cleave, /* Add Abilities Here */ }
@@ -55,6 +58,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         agentNavigation = gameObject.GetComponent<NavMeshAgent>();
         animator = gameObject.GetComponentInChildren<Animator>();
+        levelUI.enabled = false;
     }
 
     // Update is called once per frame
@@ -71,11 +75,15 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (experience > levelRequirement)
         {
-            attackDamage += 10;
+            gameUI.enabled = false;
+            levelUI.enabled = true;
             levelRequirement = levelRequirement * 1.2f;
             experience = 0.0f;
             level += 1;
             levelDisplay.text = "Level " + level.ToString();
+            health = maxHealth;
+            monsterSpawnerLeft.timeBetweenSpawns = monsterSpawnerLeft.timeBetweenSpawns * 0.95f;
+            monsterSpawnerRight.timeBetweenSpawns = monsterSpawnerRight.timeBetweenSpawns * 0.95f;
         }
     }
     // Handle all update logic associated with the character's movement.

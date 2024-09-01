@@ -12,6 +12,7 @@ public class Monster : MonoBehaviour, IDamageable
     public float attacksPerSecond = 1.0f;
     public float attackRange = 2.0f;
     public float attackDamage = 10.0f;
+    public float killExperience = 10.0f;
 
     // Store a reference to the player for easy access
     private Player player;
@@ -132,7 +133,7 @@ public class Monster : MonoBehaviour, IDamageable
             animator.transform.SetParent(null);
             Destroy(animator.gameObject, TIME_BEFORE_CORPSE_DESTROYED);
         }
-        player.experience = player.experience + 10;
+        player.experience = player.experience + killExperience;
         Destroy(gameObject);
     }
 

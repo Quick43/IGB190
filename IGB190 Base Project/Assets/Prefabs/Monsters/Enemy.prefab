@@ -97,6 +97,7 @@ MonoBehaviour:
   attacksPerSecond: 1
   attackRange: 2
   attackDamage: 10
+  slashActivationPoint: 0.4
 --- !u!1001 &4019828597909590214
 PrefabInstance:
   m_ObjectHideFlags: 0

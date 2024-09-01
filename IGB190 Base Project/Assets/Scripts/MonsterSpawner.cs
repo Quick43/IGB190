@@ -9,11 +9,11 @@ public class MonsterSpawner : MonoBehaviour
     public Monster monsterToSpawn;
     public GameObject monsterSpawnEffect;
     private float nextSpawnAt;
-
+    public float initialDelay;
     // Update is called once per frame
     void Update()
     {
-        if (monsterToSpawn != null && Time.time > nextSpawnAt)
+        if (monsterToSpawn != null && Time.time > (nextSpawnAt + initialDelay))
         {
             // Calculate the correct spawn location (given the set spawn radius)
             Vector3 spawnPosition = transform.position + Random.insideUnitSphere * spawnRadius;
